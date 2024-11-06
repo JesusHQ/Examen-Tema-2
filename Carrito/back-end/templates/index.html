@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Remoto de Carro IoT</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- Control de Carro -->
+    <div class="control">
+        <div class="logo">Control R</div>
+
+        <!-- D-Pad con botones de luces y giro -->
+        <div class="controller">
+            <div class="dpad">
+                <button class="up" onclick="sendOperation(1)">▲</button>
+                <button class="left" onclick="sendOperation(3)">◄</button>
+                <button class="center" onclick="sendOperation(5)">■</button>
+                <button class="right" onclick="sendOperation(4)">►</button>
+                <button class="down" onclick="sendOperation(2)">▼</button>
+            </div>
+
+            <!-- Botones de Luces entre los controles -->
+            <div class="lights">
+                <button onclick="sendOperation(8)">Luces Delanteras</button>
+                <button onclick="sendOperation(9)">Luces Traseras</button>
+            </div>
+            
+            <div class="rotation-buttons">
+                <button onclick="sendOperation(7)">↺</button> <!-- Giro a la izquierda -->
+                <button onclick="sendOperation(6)">↻</button> <!-- Giro a la derecha -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón para alternar entre el último registro y los últimos 10 registros -->
+    <button id="toggle-button" onclick="toggleRecords()">Mostrar los últimos 10 registros</button>
+
+    <!-- Tabla de Estado -->
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Status</th>
+                <th>Acción</th>
+                <th>IP</th>
+                <th>Nombre</th>
+                <th>ID del Dispositivo</th>
+                <th>Fecha y Hora</th>
+            </tr>
+        </thead>
+        <tbody id="last-data-body">
+            <!-- Las filas se llenarán dinámicamente con JavaScript -->
+        </tbody>
+    </table>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
